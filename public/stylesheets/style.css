@@ -18,3 +18,17 @@ hr.after-title {
 .container .jumbotron {
   border-radius: 0;
 }
+
+.typeblock {
+  text-align: center;
+  padding: 30px;
+}
+
+.typeblock img {
+  width: 100%;
+}
+
+.typeblock a {
+  color: black;
+}
+
