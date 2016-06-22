@@ -15,3 +15,6 @@ hr.after-title {
   padding-top: 10px;
 }
 
+.container .jumbotron {
+  border-radius: 0;
+}
