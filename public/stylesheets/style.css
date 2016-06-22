@@ -1,0 +1,17 @@
+body {
+  margin-top: 20px;
+}
+
+hr.after-title {
+  margin-bottom: 10px;
+}
+
+.main-nav a {
+  color: black;
+}
+
+.header .glyphicon {
+  padding-left: 15px;
+  padding-top: 10px;
+}
+
