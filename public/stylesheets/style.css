@@ -6,7 +6,7 @@ hr.after-title {
   margin-bottom: 10px;
 }
 
-.main-nav a {
+a {
   color: black;
 }
 
@@ -85,3 +85,15 @@ hr.after-title {
   text-align: center;
 }
 
+.item-list {
+  margin-top: 30px;
+}
+
+.item-list img {
+  width: 100%
+}
+
+.item-list .item {
+  text-align: center;
+  margin-bottom: 20px;
+}
