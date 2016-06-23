@@ -52,12 +52,19 @@ hr.after-title {
   height: 400px;
 }
 
-.over-right .overbox, .over-left .overbox {
+.overbox {
+  width: 300px;
   height: 40%;
   top: 30%; 
   position: relative;
   display: table;
   border: 1px solid black
+}
+
+.overbox hr {
+  height: 5px;
+  width: 30px;
+  background-color: black;
 }
 
 .over-right .overbox {
