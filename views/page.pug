@@ -54,21 +54,68 @@ block body
     for slice in page.get('page.body').slices
       //- Render the right markup for a given slice type.
       case slice.sliceType
+        //when 'featured-categories'
+        //  .row.marketing
+        //  for category in slice.value.toArray()
+        //    - var link = category.getLink('link')
+        //    .col-md-3.typeblock
+        //      p
+        //        = JSON.stringify(link)
+        //      img(src='/images/sofa.jpg')
+        //      a(href=link.url(ctx.linkResolver))
+        //        = link.getText('category.title')
+        when 'section-heading'
+          - var txt = slice.value.toArray()[0]
+          h2.text-center 
+            = txt.asText()
+        
         when 'featured-text'
           - var txt = slice.value.toArray()[0]
-          - var link = txt.get('read-more') ? txt.get('read-more').url(ctx.linkResolver) : '#'
-          - var linkLabel = txt.get('read-more-label') ? txt.get('read-more-label').asText() : ''
           .row.text-block
             .col-md-offset-2.col-md-8.text-center
               h4
                 = txt.get('title').asText()
               p
                 = txt.get('summary').asText()
-              a(href=link)
-                = linkLabel + ' >'
- 
-          
-          
+              if (txt.get('read-more-label'))
+                - var link = txt.get('read-more') ? txt.get('read-more').url(ctx.linkResolver) : '#'
+                a(href=link)
+                  = txt.get('read-more-label').asText() + ' >'
+
+        when 'featured-large-image'
+          - var feature = slice.value.toArray()[0]
+          - var illustration = feature.get('illustration') ? feature.get('illustration').main.url : ''
+          .over-right(style='background-image: url(' + illustration + ')')
+            .overbox
+              .inner
+                p
+                  = feature.get('top-label').asText()
+                h2
+                  = feature.get('title').asText()
+                hr
+                p
+                  = feature.get('summary').asText()
+                  
+        when 'featured-large'
+          - var feature = slice.value.toArray()[0]
+          - var illustration = feature.get('illustration') ? feature.get('illustration').main.url : ''
+          .row.new-full.vertical-align
+            .col-md-6
+              img(src=illustration)
+            .col-md-6
+              .large-panel
+                p
+                  = feature.get('top-label').asText()
+                h3
+                  = feature.get('title').asText()
+                hr
+                p
+                  = feature.get('summary').asText()
+                button.btn.btn-default(type='button') shop
+
+        default
+           p(style='color: red')
+             = "unkown: " + slice.sliceType
           
 
     footer.footer

@@ -10,6 +10,19 @@ a {
   color: black;
 }
 
+.vertical-align {
+  display: flex;
+  flex-direction: row;
+}
+
+.vertical-align > [class^="col-"],
+.vertical-align > [class*=" col-"] {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Optional, to align inner items 
+                              horizontally inside the column */
+}
+
 .header .glyphicon {
   padding-left: 15px;
   padding-top: 10px;
@@ -36,6 +49,10 @@ a {
   width: 100%;
 }
 
+.new-full .large-panel {
+  text-align: center;
+}
+
 .btn {
   padding: 5px 25px;
   text-transform: uppercase;
@@ -54,14 +71,14 @@ a {
 
 .overbox {
   width: 300px;
-  height: 40%;
-  top: 30%; 
+  height: 50%;
+  top: 25%; 
   position: relative;
   display: table;
   border: 1px solid black
 }
 
-.overbox hr {
+.overbox hr, .new-full hr {
   height: 5px;
   width: 30px;
   background-color: black;

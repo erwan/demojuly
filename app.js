@@ -43,7 +43,9 @@ app.route('/').get(function(req, res) {
 app.route('/:uid').get(function(req, res) {
   var uid = req.params.uid;
   api(req, res).then(function(api) {
-    return api.getByUID('page', uid);
+    return api.getByUID('page', uid, {
+      fetchLinks: 'category.title'
+    });
   }).then(function(page) {
     if (page) {
       res.render('page', {
