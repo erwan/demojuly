@@ -32,22 +32,34 @@ app.listen(PORT, function() {
   console.log('Express server listening on port ' + PORT);
 });
 
+app.route('/sample').get(function(req, res) {
+  res.render('sample');
+});
+
 app.route('/').get(function(req, res) {
-  res.render('index');
-  /*  api(req, res).then(function(api) {
-    return api.getByUID('page', 'get-started');
-  }).then(function(prismicdoc) {
-    res.render('index', {
-      pagecontent: prismicdoc
-    });
+  res.redirect('sofas-armchairs');
+});
+
+app.route('/:uid').get(function(req, res) {
+  var uid = req.params.uid;
+  api(req, res).then(function(api) {
+    return api.getByUID('page', uid);
+  }).then(function(page) {
+    if (page) {
+      res.render('page', {
+        page: page
+      });
+    } else {
+      res.status(404).send("Page not found");
+    }
   }).catch(function(err) {
     handleError(err, req, res);
-  });*/
+  });
 });
 
 app.route('/preview').get(function(req, res) {
   api(req, res).then(function(api) {
-    return Prismic.preview(api, configuration.linkResolver, req, res);
+    return prismic.preview(api, configuration.linkResolver, req, res);
   }).catch(function(err) {
     handleError(err, req, res);
   });
