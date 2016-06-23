@@ -1,0 +1,28 @@
+- function sortByTabs(categories) {
+-   var byTab = {}
+-   slice.value.toArray().forEach(function(category) {
+-     var tab = category.get('tab').asText()
+-     if (!byTab[tab]) byTab[tab] = [];
+-     byTab[tab].push(category)
+-   });
+-   return byTab;
+- }
+   
+.row.marketing
+  - var byTab = sortByTabs(slice.value.toArray())
+  - var tabs = Object.keys(byTab)
+  .row.filter-buttons
+    .col-md-offset-3.col-md-6.text-center
+      .btn-group
+        for tab in tabs
+          button.btn.btn-default(type='button')
+            = tab
+  
+  for category in slice.value.toArray()
+    - var link = category.getLink('link')
+    - var illustration = category.get('illustration') ? category.get('illustration').main.url : ''
+    .col-md-3.typeblock(data-tab=category.get('tab').asText())
+      .img-box
+        img(src=illustration)
+      a(href=link.url(ctx.linkResolver))
+        = category.get('title').asText()

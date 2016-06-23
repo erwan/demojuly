@@ -45,25 +45,12 @@ block body
 
       p.lead.text-center
         = page.get('page.description').asText()
-    .row.filter-buttons
-      .col-md-offset-3.col-md-6.text-center
-        .btn-group
-          button.btn.btn-default(type='button') by type
-          button.btn.btn-default(type='button') by material
 
     for slice in page.get('page.body').slices
       //- Render the right markup for a given slice type.
       case slice.sliceType
-        //when 'featured-categories'
-        //  .row.marketing
-        //  for category in slice.value.toArray()
-        //    - var link = category.getLink('link')
-        //    .col-md-3.typeblock
-        //      p
-        //        = JSON.stringify(link)
-        //      img(src='/images/sofa.jpg')
-        //      a(href=link.url(ctx.linkResolver))
-        //        = link.getText('category.title')
+        when 'featured-categories'
+          include partials/categories
         when 'section-heading'
           - var txt = slice.value.toArray()[0]
           h2.text-center 
@@ -138,3 +125,15 @@ block body
     footer.footer
       p © 2015 Company, Inc.
 
+  script(type='text/javascript').
+    $('.filter-buttons button').on('click', function() {
+      var $button = $(this);
+      var typ = $button.text();
+      $button.parents('.marketing').find('.typeblock').each(function() {
+        var forTab = $(this).data('tab');
+        $(this).toggle(forTab === typ);
+        console.log("Look at: ", forTab);
+      });
+    });
+    $('.filter-buttons button:first').click();
+    
