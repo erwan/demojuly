@@ -36,3 +36,6 @@ hr.after-title {
   width: 100%;
 }
 
+.filter-buttons .btn {
+  padding: 5px 25px;
+}
