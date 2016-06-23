@@ -45,6 +45,14 @@ a {
   color: black;
 }
 
+.new-full {
+  border: 1px solid #DDD
+}
+
+.new-full .imagebox {
+  padding: 0
+}
+
 .new-full img {
   width: 100%;
 }
@@ -111,6 +119,7 @@ a {
 }
 
 .item-list .item {
+  max-height: 400px;
   text-align: center;
   margin-bottom: 20px;
 }
