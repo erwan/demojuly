@@ -32,3 +32,7 @@ hr.after-title {
   color: black;
 }
 
+.new-full img {
+  width: 100%;
+}
+
