@@ -97,3 +97,14 @@ a {
   text-align: center;
   margin-bottom: 20px;
 }
+
+.text-block {
+  border-top: 1px solid #CCC;
+  border-bottom: 1px solid #CCC;
+  padding: 30px 0;
+}
+
+.text-block p {
+  color: #999
+}
+
