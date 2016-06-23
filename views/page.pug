@@ -129,10 +129,9 @@ block body
     $('.filter-buttons button').on('click', function() {
       var $button = $(this);
       var typ = $button.text();
-      $button.parents('.marketing').find('.typeblock').each(function() {
-        var forTab = $(this).data('tab');
-        $(this).toggle(forTab === typ);
-        console.log("Look at: ", forTab);
+      var $blocks = $button.parents('.marketing').find('.typeblock');
+      $blocks.not('[data-tab="' + typ + '"]').fadeOut(200, function() {
+        $blocks.filter('[data-tab="' + typ + '"]').fadeIn(200);
       });
     });
     $('.filter-buttons button:first').click();
