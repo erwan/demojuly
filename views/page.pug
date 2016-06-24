@@ -39,9 +39,9 @@ block body
             a(href='#') Outdoor
           li(role='presentation')
             a(href='#') Last&nbsp;chance
-    .jumbotron(data-wio-id=page.id)
+    .jumbotron
       .inner
-        h3.text-center
+        h3.text-center(data-wio-id=page.id)
           = page.get('page.title').asText()
         p.lead.text-center
           = page.get('page.description').asText()
