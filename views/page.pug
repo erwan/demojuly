@@ -40,11 +40,11 @@ block body
           li(role='presentation')
             a(href='#') Last&nbsp;chance
     .jumbotron(data-wio-id=page.id)
-      h3.text-center
-        = page.get('page.title').asText()
-
-      p.lead.text-center
-        = page.get('page.description').asText()
+      .inner
+        h3.text-center
+          = page.get('page.title').asText()
+        p.lead.text-center
+          = page.get('page.description').asText()
 
     for slice in page.get('page.body').slices
       //- Render the right markup for a given slice type.

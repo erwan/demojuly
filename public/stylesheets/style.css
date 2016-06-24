@@ -11,6 +11,16 @@ a {
   color: black;
 }
 
+.jumbotron {
+  margin-left: -500px;
+  margin-right: -500px;
+}
+
+.jumbotron .inner {
+  margin-left: 500px;
+  margin-right: 500px;
+}
+
 .vertical-align {
   display: flex;
   flex-direction: row;
