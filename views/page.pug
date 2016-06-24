@@ -59,17 +59,7 @@ block body
                     = tab.get('label') ? tab.get('label').asText() : 'Noname'
       
         when 'featured-categories'
-          .row.marketing
-            for category in slice.value.toArray()
-              - var link = category.getLink('link')
-              - var illustration = category.get('illustration') ? category.get('illustration').main.url : ''
-              - var tab = category.get('tab') ? category.get('tab').value : 0
-              .col-md-3.typeblock(data-tab=tab)
-                .img-box
-                  img(src=illustration)
-                if link
-                  a(href=link.url(ctx.linkResolver))
-                    = category.get('title').asText()
+          include partials/categories
 
         when 'section-heading'
           - var txt = slice.value.toArray()[0]
@@ -151,9 +141,7 @@ block body
       console.log("click!", $(this));
       var $button = $(this);
       var idx = $button.index() + 1;
-      var $blocks = $button.parents('.filter-buttons').next('.marketing').find('.typeblock');
-      console.log("$parent ", $button.parent());
-      console.log("$block ", $blocks);
+      var $blocks = $button.parents('.filter-buttons').next('.marketing').find('.category-group');
       $blocks.not('[data-tab="' + idx + '"]').fadeOut(200, function() {
         $blocks.filter('[data-tab="' + idx + '"]').fadeIn(200);
       });

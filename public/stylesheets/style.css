@@ -33,6 +33,10 @@ a {
   border-radius: 0;
 }
 
+.marketing {
+  height: 570px;
+}
+
 .typeblock {
   text-align: center;
   padding: 30px;
