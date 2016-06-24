@@ -138,7 +138,6 @@ block body
 
   script(type='text/javascript').
     $('.filter-buttons button').on('click', function() {
-      console.log("click!", $(this));
       var $button = $(this);
       var idx = $button.index() + 1;
       var $blocks = $button.parents('.filter-buttons').next('.marketing').find('.category-group');
