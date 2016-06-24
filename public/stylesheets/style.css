@@ -69,7 +69,7 @@ a {
 }
 
 .new-full .imagebox {
-  padding: 0
+  height: 600px;
 }
 
 .new-full .large-panel {
