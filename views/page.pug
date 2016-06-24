@@ -72,7 +72,8 @@ block body
         when 'featured-large-image'
           - var feature = slice.value.toArray()[0]
           - var illustration = feature.get('illustration') ? feature.get('illustration').main.url : ''
-          .over-right(style='background-image: url(' + illustration + ')')
+          - var isLeft = feature.get('side') ? (feature.get('side').asText() === 'left') : false;
+          div(style='background-image: url(' + illustration + ')', class=isLeft ? 'over-left' : 'over-right')
             .overbox
               .inner
                 p
@@ -80,8 +81,10 @@ block body
                 h2
                   = feature.get('title').asText()
                 hr
-                p
-                  = feature.get('summary').asText()
+                if (feature.get('read-more-label'))
+                  - var link = feature.get('read-more') ? feature.get('read-more').url(ctx.linkResolver) : '#'
+                  a(href=link).btn.btn-default
+                    = feature.get('read-more-label').asText()
                   
         when 'featured-large'
           - var feature = slice.value.toArray()[0]
