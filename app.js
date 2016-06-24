@@ -36,6 +36,14 @@ app.route('/sample').get(function(req, res) {
   res.render('sample');
 });
 
+app.route('/preview').get(function(req, res) {
+  api(req, res).then(function(api) {
+    return prismic.preview(api, configuration.linkResolver, req, res);
+  }).catch(function(err) {
+    handleError(err, req, res);
+  });
+});
+
 app.route('/').get(function(req, res) {
   res.redirect('sofas-armchairs');
 });
@@ -54,14 +62,6 @@ app.route('/:uid').get(function(req, res) {
     } else {
       res.status(404).send("Page not found");
     }
-  }).catch(function(err) {
-    handleError(err, req, res);
-  });
-});
-
-app.route('/preview').get(function(req, res) {
-  api(req, res).then(function(api) {
-    return prismic.preview(api, configuration.linkResolver, req, res);
   }).catch(function(err) {
     handleError(err, req, res);
   });
