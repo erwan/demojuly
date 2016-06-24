@@ -49,8 +49,28 @@ block body
     for slice in page.get('page.body').slices
       //- Render the right markup for a given slice type.
       case slice.sliceType
+        
+        when 'featured-tab'
+          .row.filter-buttons
+            .col-md-offset-3.col-md-6.text-center
+              .btn-group
+                for tab in slice.value.toArray()
+                  button.btn.btn-default(type='button')
+                    = tab.get('label') ? tab.get('label').asText() : 'Noname'
+      
         when 'featured-categories'
-          include partials/categories
+          .row.marketing
+            for category in slice.value.toArray()
+              - var link = category.getLink('link')
+              - var illustration = category.get('illustration') ? category.get('illustration').main.url : ''
+              - var tab = category.get('tab') ? category.get('tab').value : 0
+              .col-md-3.typeblock(data-tab=tab)
+                .img-box
+                  img(src=illustration)
+                if link
+                  a(href=link.url(ctx.linkResolver))
+                    = category.get('title').asText()
+
         when 'section-heading'
           - var txt = slice.value.toArray()[0]
           h2.text-center 
@@ -122,18 +142,20 @@ block body
         // default
         //   p(style='color: red')
         //     = "unkown: " + slice.sliceType
-          
 
     footer.footer
       p © 2015 Company, Inc.
 
   script(type='text/javascript').
     $('.filter-buttons button').on('click', function() {
+      console.log("click!", $(this));
       var $button = $(this);
-      var typ = $button.text();
-      var $blocks = $button.parents('.marketing').find('.typeblock');
-      $blocks.not('[data-tab="' + typ + '"]').fadeOut(200, function() {
-        $blocks.filter('[data-tab="' + typ + '"]').fadeIn(200);
+      var idx = $button.index() + 1;
+      var $blocks = $button.parents('.filter-buttons').next('.marketing').find('.typeblock');
+      console.log("$parent ", $button.parent());
+      console.log("$block ", $blocks);
+      $blocks.not('[data-tab="' + idx + '"]').fadeOut(200, function() {
+        $blocks.filter('[data-tab="' + idx + '"]').fadeIn(200);
       });
     });
     $('.filter-buttons button:first').click();
