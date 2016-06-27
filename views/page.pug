@@ -128,6 +128,9 @@ block body
                   a(href=link)
                     = feature.get('read-more-label').asText() + ' >'
 
+        when 'separator'
+          hr
+
         // default
         //   p(style='color: red')
         //     = "unkown: " + slice.sliceType
